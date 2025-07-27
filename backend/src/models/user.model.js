@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  notificationPreferences: {
+    emailNotifications: { type: Boolean, default: false },
+    smsAlerts: { type: Boolean, default: false },
+  },
 },
 {
   timestamps: true,

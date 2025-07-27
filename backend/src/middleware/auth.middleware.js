@@ -21,7 +21,7 @@ export const protectRoute = async(req,res,next) => {
      }
 
      req.user = user   //user is the user object that is found in the database
-     next()  //next is used to move to the next middleware or route handler,if user is authenticated, add user to the request object and call the next middleware or route handler
+     next(); //next is used to move to the next middleware or route handler,if user is authenticated, add user to the request object and call the next middleware or route handler
     
     } catch (error) {
        console.log("Error in protectRoute middleware:",error.message);
