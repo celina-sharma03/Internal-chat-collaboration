@@ -11,7 +11,6 @@ export const getUsersForSidebar = async (req, res) => {
     }).select("-password");
     res.status(200).json(filteredUsers);
   } catch (error) {
-    console.log("Error in getUsersForSidebar:", error.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -25,15 +24,13 @@ export const getMessages = async(req,res) => {
     const {id:userToChatId} = req.params
     const myId = req.user._id;
     const messages = await Message.find({
-       $or: [
+      $or: [
         {senderId:myId,receiverId:userToChatId},
         {senderId:userToChatId,receiverId:myId}
-       ]
-    })
-
+      ]
+    }).populate("senderId", "-password").populate("receiverId", "-password");
     res.status(200).json(messages);
  } catch (error) {
-    console.log("Error in getMessages controllers:",error.message);
     res.status(500).json({message: "Internal server error"});
     }
 };
@@ -58,18 +55,20 @@ export const sendMessage = async(req,res) => {
         image:imageUrl
        });
 
-       await newMessage.save();
+       let newMssage = await newMessage.save();
+       newMssage = await newMssage.populate("senderId", "-password");
+       newMssage = await newMssage.populate("receiverId", "-password");
 
        //todo: send real time notification to the receiver using socket.io
        const receiverSocketId = getReceiverSocketId(receiverId);
+
        if(receiverSocketId){
-        io.to(receiverSocketId).emit("newMessage",newMessage);
+        io.to(receiverSocketId).emit("newMessage", newMssage);
        }
 
-       res.status(201).json(newMessage);
+       res.status(201).json(newMssage);
 
     } catch (error) {
-        console.log("Error in sendMessage controllers:",error.message);
         res.status(500).json({message: "Internal server error"});
     }
  };

@@ -1,5 +1,4 @@
 import { useChatStore } from "../store/useChatStore";
-
 import Sidebar from "../components/Sidebar";
 import NoChatSelected from "../components/NoChatSelected";
 import ChatContainer from "../components/ChatContainer";
@@ -8,16 +7,17 @@ const HomePage = () => {
   const { selectedUser } = useChatStore();
 
   return (
-    <div className="h-screen bg-base-200">
-      <div className="flex items-center justify-center pt-20 px-4">
-        <div className="bg-base-100 rounded-lg shadow-cl w-full max-w-6xl h-[calc(100vh-8rem)]">
-          <div className="flex h-full rounded-lg overflow-hidden">
-            <Sidebar />
-
-            {!selectedUser ? <NoChatSelected /> : <ChatContainer />}
+    <div className="w-screen h-screen min-h-screen flex bg-gray-50 overflow-hidden pt-16"> {/* pt-16 offsets the Navbar */}
+      <Sidebar />
+      <main className="flex-1 flex flex-col h-full">
+        {!selectedUser ? (
+          <div className="flex flex-1 items-center justify-center h-full">
+            <NoChatSelected />
           </div>
-        </div>
-      </div>
+        ) : (
+          <ChatContainer />
+        )}
+      </main>
     </div>
   );
 };

@@ -45,22 +45,21 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="p-4 w-full">
+    <div className="p-4 w-full bg-white rounded-b-2xl shadow-md border-t border-gray-200">
       {imagePreview && (
         <div className="mb-3 flex items-center gap-2">
           <div className="relative">
             <img
               src={imagePreview}
               alt="Preview"
-              className="w-20 h-20 object-cover rounded-lg border border-zinc-700"
+              className="w-20 h-20 object-cover rounded-lg border border-gray-300 shadow-sm"
             />
             <button
               onClick={removeImage}
-              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-300
-              flex items-center justify-center"
+              className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white border border-gray-300 shadow flex items-center justify-center hover:bg-gray-100 transition-colors"
               type="button"
             >
-              <X className="size-3" />
+               <X className="size-3 text-gray-500" />
             </button>
           </div>
         </div>
@@ -70,7 +69,7 @@ const MessageInput = () => {
         <div className="flex-1 flex gap-2">
           <input
             type="text"
-            className="w-full input input-bordered rounded-lg input-sm sm:input-md"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder-gray-400 text-gray-800 bg-gray-50"
             placeholder="Type a message..."
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -84,8 +83,7 @@ const MessageInput = () => {
           />
           <button
             type="button"
-            className={`hidden sm:flex btn btn-circle
-                     ${imagePreview ? "text-emerald-500" : "text-zinc-400"}`}
+            className={`hidden sm:flex items-center justify-center rounded-full border border-gray-200 bg-gray-50 hover:bg-blue-50 transition-colors w-10 h-10 shadow-sm ${imagePreview ? "text-blue-500" : "text-gray-400"}`}
             onClick={() => fileInputRef.current?.click()}
           >
             <Image size={20} />
@@ -93,7 +91,7 @@ const MessageInput = () => {
         </div>
         <button
           type="submit"
-          className="btn btn-sm btn-circle"
+          className="flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white w-10 h-10 shadow transition-all duration-150 disabled:bg-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed transform hover:scale-105"
           disabled={!text.trim() && !imagePreview}
         >
           <Send size={22} />

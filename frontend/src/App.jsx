@@ -43,7 +43,7 @@ const App = () => {
   )
 
   return (
-    <div data-theme={theme}>
+    <div data-theme={theme} className="h-full min-h-screen w-full">
       {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
 
       <Routes>

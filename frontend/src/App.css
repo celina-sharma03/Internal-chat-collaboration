@@ -1,3 +1,14 @@
 @plugin "daisyui";
 
+/* Minimal, clean layout for HomePage */
+body, #root {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* Sidebar and chat area fill height */
+.sidebar {
+  height: 100vh;
+}
+
 

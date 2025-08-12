@@ -89,7 +89,7 @@ export const useAuthStore = create((set,get) => ({
       },
     });
     socket.connect();
-
+    // Removed debug logs and socket.onAny
     set({socket: socket});
     socket.on("getOnlineUsers",(userIds) => {
       set({onlineUsers: userIds});

@@ -34,7 +34,7 @@ const Navbar = ({ toggleDarkMode }) => {
   
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+    <header className="fixed top-0 left-0 w-full z-50 bg-gray-900 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <div className="w-full flex items-center justify-between px-4 md:px-8 lg:px-60 py-3">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">

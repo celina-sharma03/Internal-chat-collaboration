@@ -1,3 +1,15 @@
+html, body, #root, [data-theme] {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  min-width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
 @import "tailwindcss";
 
 @keyframes blob {
@@ -72,10 +84,7 @@
   }
 }
 
-
-
-
-  body{
+body{
     font-family: 'Poppins', sans-serif;
   }
   .nav-btn {
